@@ -2,7 +2,7 @@
 
 # Sort the movies by their release date in descending order and save them to a new file.
 gawk -v FPAT='([^,]*)|("([^"]|"")*")' '
-NR==1 { next }
+NR==1 { header=$0; next }
 {
   rd = $16
   gsub(/^"|"$/, "", rd)    
