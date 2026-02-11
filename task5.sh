@@ -4,14 +4,12 @@
 gawk -v FPAT='([^,]*)|("([^"]|"")*")' '
 NR==1 { header=$0; next }
 {
-  budget = $4
-  rev    = $5
+  budget = $20
+  rev    = $21
 
   gsub(/^"|"$/, "", budget)
   gsub(/^"|"$/, "", rev)
 
-  if (rev !~ /^[0-9]+(\.[0-9]+)?$/) next
-  if (budget !~ /^[0-9]+(\.[0-9]+)?$/) next
   if (rev == 0 || budget == 0) next
 
   profit = rev - budget

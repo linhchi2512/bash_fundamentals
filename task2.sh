@@ -7,7 +7,7 @@ NR==1 { header=$0; next }
   rating = $18
   gsub(/^"|"$/, "", rating)
 
-  if (rating ~ /^[0-9]+(\.[0-9]+)?$/ && rating > 7.5) {
+  if (rating > 7.5) {
     printf "%6.3f|%s\n", rating, $0
   }
 }

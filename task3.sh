@@ -5,11 +5,10 @@ gawk -v FPAT='([^,]*)|("([^"]|"")*")' '
 NR==1 { header=$0; next }
 {
   title = $6
-  rev = $5
+  rev = $21
   gsub(/^"|"$/, "", title)
   gsub(/^"|"$/, "", rev)
 
-  if (rev !~ /^[0-9]+(\.[0-9]+)?$/) next
   if (rev == 0) next
 
   if (!seen) {
@@ -28,7 +27,7 @@ END {
     print "No valid revenue values found."
     exit 1
   }
-  print "Highest revenue:", max_title, "(" max ")"
-  print "Lowest revenue:",  min_title, "(" min ")"
+  print "Highest revenue:", max_title, max
+  print "Lowest revenue:",  min_title, min
 }
 ' tmdb_movies.oneline.csv
